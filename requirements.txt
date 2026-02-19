@@ -1,0 +1,4 @@
+websockets
+wheel
+setuptools
+twine
