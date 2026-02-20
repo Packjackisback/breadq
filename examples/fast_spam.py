@@ -1,6 +1,7 @@
 import asyncio
 import multiprocessing
-from qbreader_client import QBReaderClient
+from breadq import QBReaderClient
+import random
 
 """
     Fast spammer
@@ -15,7 +16,7 @@ async def launch_bot(i, room):
     client = QBReaderClient(
         room=room,
         username="SPAMBOT",
-        user_id=f"bot{i}"
+        user_id=f"bot{random.randrange(1,10000000)}"
     )
     await client.start()
 
@@ -35,7 +36,7 @@ def run_worker(start, count, room):
 if __name__ == "__main__":
     room = input("Enter room name: ")
     processes = []
-    workers = 4 #only 3 will probably run, oh well
+    workers = 3 #only 3 will probably run, oh well
     bots_per_worker = 250
 
     for w in range(workers):

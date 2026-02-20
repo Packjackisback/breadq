@@ -18,7 +18,7 @@ async def launch_bot(room_name, i):
         room=room_name,
         username=f"blocking_bot{i}",
         user_id=f"blocking_bot{i}",
-        # debug_mode=true # uncomment me for debug mode
+        debug_mode=True # uncomment me for debug mode
     )
 
     async def handle_pause(msg):
@@ -35,8 +35,8 @@ async def worker(start, count, room_name):
     for i in range(start, start + count):
         tasks.append(asyncio.create_task(launch_bot(room_name, i)))
         await asyncio.sleep(0.2)
-    await asyncio.gather(*tasks, return_exceptions=True) # this eats all of the errors, stops it from exixting early
-    #await asyncio.gather(*tasks)  # if you want to debug, uncomment this, and uncomment the thing in the client constructor
+    #await asyncio.gather(*tasks, return_exceptions=True) # this eats all of the errors, stops it from exixting early
+    await asyncio.gather(*tasks)  # if you want to debug, uncomment this, and uncomment the thing in the client constructor
 
 def run_worker(start, count, room_name):
     asyncio.run(worker(start, count, room_name))

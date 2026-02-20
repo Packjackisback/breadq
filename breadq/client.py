@@ -57,7 +57,8 @@ class QBReaderClient:
             async with websockets.connect(
                 url,
                 origin="https://www.qbreader.org",
-                ping_interval=None
+                ping_interval=None,
+                max_size=None,
             ) as ws:
                 self.ws = ws
                 self.running = True
